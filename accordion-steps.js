@@ -114,10 +114,9 @@
         itemDisabled: '=',
         open: '=',
         accordionId: '@',
-        formName: '@'
+        valid: '='
       },
       link: function(scope, element, attrs, accordionController) {
-
         scope.isOpenned = scope.open;
         accordionController.addCollapsibleItem(scope);
         if (scope.isOpenned) {
@@ -150,8 +149,8 @@
       },
       template: '<div class="clearfix">'+
                   '<div class="left-progress-bar">'+
-                    '<div class="node bg-blue"><span class="status">{{$id}}</span></div>'+
-                    '<div class="divider" ng-style="{height:height}"></div>'+
+                    '<div class="node" ng-class="{green:valid, blue: isOpenned, gray: !isOpenned}"><span class="status"><span ng-show="valid">&#10004;</span><span ng-show="!valid">{{index+1}}</span></span></div>'+
+                    '<div class="divider" ng-style="{height:height}" ng-class="{green:valid}"></div>'+
                   '</div>'+
                   '<div class="accordion-section" ng-class="{open: isOpenned}">'+
                     '<div class="accordion-header">'+

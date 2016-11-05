@@ -1,5 +1,7 @@
  $primary-color : #00f;
  $blue-color:#25C2D0;
+ $green-color: #64B44E;
+ $gray-color:#ccc;
  .clearfix:after {
    visibility: hidden;
    display: block;
@@ -11,10 +13,15 @@
  * html .clearfix             { zoom: 1; } /* IE6 */
  *:first-child+html .clearfix { zoom: 1; } /* IE7 */
 
- .bg-blue {
+ .blue {
      background-color: $blue-color;
  }
-
+ .green {
+    background-color:$green-color !important;
+}
+.gray {
+    background-color: $gray-color;
+}
 .accordion {
   border-radius: 3px;
   .padding {
