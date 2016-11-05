@@ -14,8 +14,14 @@
   zoom: 1; }
 
 /* IE7 */
-.bg-blue {
+.blue {
   background-color: #25C2D0; }
+
+.green {
+  background-color: #64B44E !important; }
+
+.gray {
+  background-color: #ccc; }
 
 .accordion {
   border-radius: 3px; }
