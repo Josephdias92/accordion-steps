@@ -1,3 +1,22 @@
+.clearfix:after {
+  visibility: hidden;
+  display: block;
+  font-size: 0;
+  content: " ";
+  clear: both;
+  height: 0; }
+
+* html .clearfix {
+  zoom: 1; }
+
+/* IE6 */
+*:first-child + html .clearfix {
+  zoom: 1; }
+
+/* IE7 */
+.bg-blue {
+  background-color: #25C2D0; }
+
 .accordion {
   border-radius: 3px; }
   .accordion .padding {
@@ -9,6 +28,8 @@
   padding: 10px; }
 
 .accordion-section {
+  width: 95%;
+  float: right;
   background: #fff;
   margin-bottom: 15px;
   -webkit-box-shadow: 0px 0px 5px -1px rgba(107, 99, 107, 0.7);
@@ -53,5 +74,40 @@
 
 .accordion-footer {
   background-color: #F6F6F6; }
+
+.left-progress-bar {
+  width: 5%;
+  float: left;
+  padding-top: 20px; }
+  .left-progress-bar .node {
+    height: 20px;
+    width: 20px;
+    border-radius: 50%;
+    display: inline-block;
+    transition: all 100ms ease; }
+    .left-progress-bar .node .status {
+      color: white;
+      font-size: 60%;
+      height: 100%;
+      margin: 5px 5px;
+      display: inline-block;
+      font-style: normal;
+      font-weight: normal;
+      font-variant: normal;
+      text-transform: none;
+      line-height: 1;
+      width: 50%;
+      text-align: center; }
+  .left-progress-bar .activated {
+    box-shadow: 0px 0px 3px 2px rgba(194, 255, 194, 0.8); }
+  .left-progress-bar .divider {
+    position: absolute;
+    background: white;
+    height: 40px;
+    width: 6px;
+    margin-left: 7px;
+    margin-top: 3px;
+    margin-bottom: 3px;
+    transition: all 0.5s ease; }
 
 /*# sourceMappingURL=accordion-steps.css.map */

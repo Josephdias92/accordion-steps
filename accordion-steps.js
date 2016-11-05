@@ -74,7 +74,6 @@
           accordionService.oneAtATime(collapsibleItemToOpen);
         }
       };
-
       this.addCollapsibleItem = function(collapsibleItem) {
         accordionService.setAccordion(collapsibleItem);
         if ($scope.closeIconClass !== undefined || $scope.openIconClass !==
@@ -118,6 +117,7 @@
         formName: '@'
       },
       link: function(scope, element, attrs, accordionController) {
+
         scope.isOpenned = scope.open;
         accordionController.addCollapsibleItem(scope);
         if (scope.isOpenned) {
@@ -125,13 +125,20 @@
         } else {
           scope.icon = scope.closeIcon;
         }
-
+        scope.$watch(
+          function() {
+            return element[0].offsetHeight;
+          },
+          function(newValue) {
+            scope.height=element[0].offsetHeight-30 +'px';
+          });
         scope.toggleCollapsibleItem = function() {
-          console.log('obj');
+          $timeout(function(){
+            scope.height=element[0].offsetHeight-30 +'px';
+          })
           if (scope.itemDisabled) {
             return;
           }
-
           if (scope.isOpenned === false) {
             accordionController.openCollapsibleItem(this);
             scope.icon = scope.openIcon;
@@ -141,7 +148,20 @@
           }
         };
       },
-      template: '<div><div><div>1</div><div></div></div><div class="accordion-section" ng-class="{open: isOpenned}"><div class="accordion-header"><div class="accordion-section-title" ng-class="{disabled: itemDisabled}" ng-click="toggleCollapsibleItem()">{{itemTitle}}<i class="{{icon}} icon" ng-class="{iconleft: iconIsOnLeft}"></i></div></div><div class="accordion-section-content"><div class="content" ng-transclude></div></div></div></div>'
+      template: '<div class="clearfix">'+
+                  '<div class="left-progress-bar">'+
+                    '<div class="node bg-blue"><span class="status">{{$id}}</span></div>'+
+                    '<div class="divider" ng-style="{height:height}"></div>'+
+                  '</div>'+
+                  '<div class="accordion-section" ng-class="{open: isOpenned}">'+
+                    '<div class="accordion-header">'+
+                      '<div class="accordion-section-title" ng-class="{disabled: itemDisabled}" ng-click="toggleCollapsibleItem()">{{itemTitle}}<i class="{{icon}} icon" ng-class="{iconleft: iconIsOnLeft}"></i></div>'+
+                    '</div>'+
+                    '<div class="accordion-section-content">'+
+                      '<div class="content" ng-transclude></div>'+
+                    '</div>'+
+                  '</div>'+
+                '</div>'
     };
   });
 })();
