@@ -68,6 +68,7 @@
   .controller('accordionController', ['$scope', '$timeout',
     'accordionService',
     function($scope, $timeout, accordionService) {
+      this.onOpenScrollOnTop=$scope.onOpenScrollOnTop;
       accordionService.init();
       this.openCollapsibleItem = function(collapsibleItemToOpen) {
         if ($scope.oneAtATime) {
@@ -96,14 +97,15 @@
         oneAtATime: '@',
         closeIconClass: '@',
         openIconClass: '@',
-        iconPosition: '@'
+        iconPosition: '@',
+        onOpenScrollOnTop:'@'
       },
       controller: 'accordionController',
       template: '<div class="accordion" ng-transclude></div>'
     };
   })
 
-  .directive('accordionItem', function($timeout) {
+  .directive('accordionItem', function($timeout, $window) {
     return {
       require: '^accordion',
       restrict: 'EA',
@@ -124,13 +126,27 @@
         } else {
           scope.icon = scope.closeIcon;
         }
+        if(accordionController.onOpenScrollOnTop){
+          scope.$watch(
+            function() {
+              return scope.isOpenned;
+            },
+            function(){
+              $timeout(function() {
+                if(scope.isOpenned && element){
+                  window.scrollTo(0, element[0].offsetTop -10)
+                }
+              });
+            }
+          )
+        }
         scope.$watch(
-          function() {
-            return element[0].offsetHeight;
-          },
-          function(newValue) {
-            scope.height=element[0].offsetHeight-30 +'px';
-          });
+        function() {
+          return element[0].offsetHeight;
+        },
+        function(newValue) {
+          scope.height=element[0].offsetHeight-30 +'px';
+        });
         scope.toggleCollapsibleItem = function() {
           $timeout(function(){
             scope.height=element[0].offsetHeight-30 +'px';
