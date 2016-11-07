@@ -1,11 +1,11 @@
 {
   "name": "accordion-steps",
-  "main": "accordion-steps.js",
+  "main": ["accordion-steps.js","accordion-steps.css"],
   "homepage": "https://github.com/Josephdias92/accordion-steps",
   "authors": [
     "joseph dias <josephdias92@gmail.com>"
   ],
-  "description": "",
+  "description": "Angular accordion wizard",
   "license": "MIT",
   "ignore": [
     "**/.*",
@@ -16,5 +16,13 @@
   ],
   "dependencies": {
     "angular": "angularjs#^1.5.7"
-  }
+  },
+  "keywords": [
+    "angular",
+    "accordion",
+    "wizard",
+    "steps",
+    "form",
+    "validation"
+  ]
 }
